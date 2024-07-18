@@ -1,0 +1,72 @@
+# version: "3"
+# services:
+
+#   mysql-server:
+#     image: mysql:8.0
+#     container_name: mysql-server
+#     volumes:
+#       - mysql-data:/var/lib/mysql
+#     restart: always
+#     environment:
+#       - MYSQL_ROOT_PASSWORD=root
+#       - MYSQL_DATABASE=sentimientos_db
+#       - MYSQL_USER=sentimientos
+#       - MYSQL_PASSWORD=sentimientos
+#     ports:
+#       - "3306:3306"
+#     networks:
+#       - mynetwork
+
+#   app:
+#     container_name: backend-analisis
+#     image: bryepz/docker-backend-analisis-sentimientos
+#     build: 
+#       context: .
+#       dockerfile: Dockerfile
+#     ports:
+#       - "5001:5001"
+#     restart: always
+#     depends_on:
+#       - mysql-server
+#       - selenium-hub
+#     networks:
+#       - mynetwork
+#       - myexternalnetwork
+
+#   selenium-hub:
+#     image: selenium/hub:4.10.0
+#     container_name: selenium-hub
+#     restart: always
+#     ports:
+#       - "4444:4444"
+#     networks:
+#       - mynetwork
+
+#   selenium-firefox:
+#     image: selenium/node-firefox
+#     container_name: selenium-firefox
+#     shm_size: 2gb
+#     depends_on:
+#       - selenium-hub
+#     environment:
+#       - SE_EVENT_BUS_HOST=selenium-hub
+#       - SE_EVENT_BUS_PUBLISH_PORT=4442
+#       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+#       - SE_NODE_MAX_INSTANCES=1
+#       - SE_NODE_MAX_SESSION=1
+#       - SE_NODE_GRID_URL=http://selenium-hub:4444
+#       # - SE_NODE_SESSION_TIMEOUT=30
+#     volumes:
+#       - /dev/shm:/dev/shm
+#     networks:
+#       - mynetwork      
+
+# volumes:
+#   mysql-data:
+
+# networks:
+#   mynetwork:
+#     driver: bridge  
+#   myexternalnetwork:
+#     external: true
+    

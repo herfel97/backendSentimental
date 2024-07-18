@@ -1,0 +1,9 @@
+Jinja2
+Flask
+selenium
+webdriver_manager
+flask-cors
+Pillow
+mysql-connector-python
+openai
+tiktoken
